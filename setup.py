@@ -7,6 +7,6 @@ site.ENABLE_USER_SITE = True
 
 setup(
     ext_modules=[
-        Extension(name="nplaguerre", sources=["nplaguerre.f90"]),
+        Extension(name="ehlers", sources=["ehlers.f90"]),
     ]
 )

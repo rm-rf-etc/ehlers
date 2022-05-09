@@ -1,0 +1,4 @@
+*.pyd
+*.mod
+build/
+ehlers.egg-info/
