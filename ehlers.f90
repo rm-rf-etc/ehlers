@@ -13,7 +13,6 @@ subroutine laguerre(input,factor,n,output)
     real*8,dimension(8) :: L
     integer,intent(in) :: n
     integer :: i
-    integer :: j
 
     if (factor > 1.0) then
         alpha = 2.0 / (factor + 1.0)
@@ -22,10 +21,7 @@ subroutine laguerre(input,factor,n,output)
     endif
     alpha1 = 1.0 - alpha
 
-    ! pre-fill L
-    do i = 1,8
-        L(i) = input(1)
-    enddo
+    L(:) = input(1)
 
     do i = 1,n
         L(1) = alpha * input(i) + alpha1 * L(2)
@@ -35,9 +31,7 @@ subroutine laguerre(input,factor,n,output)
 
         output(i) = (L(1) + 2.0 * L(3) + 2.0 * L(5) + L(7)) / 6.0
 
-        do j = 0,6
-            L(8-j) = L(8-j-1)
-        enddo
+        L = eoshift(L, shift=-1)
     enddo
 end subroutine
 
